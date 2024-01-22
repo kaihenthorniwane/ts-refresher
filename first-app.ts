@@ -108,3 +108,64 @@ abVal = {
 };
 
 //since TypeAB is the merge of TypeA and TypeB, any TypeAB such as abVal should have propOne and propTwo as well as propThree
+
+interface InterfaceTypeA {
+  propOne: number;
+  propTwo: number;
+}
+
+interface InterfaceTypeB {
+  propThree: boolean;
+}
+
+interface InterfaceTypeAB extends InterfaceTypeA, InterfaceTypeB {}
+
+let abValInterface: InterfaceTypeAB;
+
+abValInterface = {
+  propOne: 1,
+  propTwo: 2,
+  propThree: false,
+};
+
+//extending an interface is similar to merging a type but you use interface extends rather than the & operator
+
+type ThreeOptions = "option1" | "option2" | "option3";
+
+let stringLiteral: ThreeOptions; //Can only be these three
+
+stringLiteral = "option1";
+stringLiteral = "option2";
+stringLiteral = "option3";
+
+//Since we defined only three strings as the type of stringLiteral, any other will throw an error
+
+function typeGuardedFunction(username: string) {
+  if (typeof username === "string") {
+    //do something
+  }
+}
+
+type OperateWithUnknowns<T, U> = {
+  unknownOne: T[];
+  unknownTwo: U[];
+  operate: (unknownOne: T, unknownTwo: U) => void;
+};
+
+let OperateWithStringAndBoolean: OperateWithUnknowns<string, boolean> = {
+  unknownOne: [],
+  unknownTwo: [],
+  operate(unknownOne, unknownTwo) {
+    //do something
+  },
+};
+
+//T and U are not known in the initial type definition, so you input it as string and boolean in the type definition
+
+function arrayify<T, U>(paramOne: T, paramTwo: U) {
+  return [paramOne, paramTwo];
+}
+
+const newArr = arrayify("hi", "okay");
+
+//since T and U are generic type parameters in arrayify, you can use any type in it for newArr
