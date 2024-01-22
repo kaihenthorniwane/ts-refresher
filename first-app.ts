@@ -30,10 +30,12 @@ function returningFunction(paramOne: number, paramTwo: number): boolean {
   return paramOne > paramTwo;
 }
 
+type callbackFunctionType = (paramOne: number, paramTwo: number) => number;
+
 function functionWithCallback(
   paramOne: number,
   paramTwo: number,
-  callbackFunction: (paramOne: number, paramTwo: number) => number
+  callbackFunction: callbackFunctionType
 ) {
   callbackFunction(paramOne, paramTwo);
 }
