@@ -29,3 +29,11 @@ function returningFunction(paramOne: number, paramTwo: number): boolean {
   //check if paramOne is greater than paramTwo
   return paramOne > paramTwo;
 }
+
+function functionWithCallback(
+  paramOne: number,
+  paramTwo: number,
+  callbackFunction: (paramOne: number, paramTwo: number) => number
+) {
+  callbackFunction(paramOne, paramTwo);
+}
